@@ -1,0 +1,19 @@
+---
+- name: Task6 create users
+  hosts: all
+  become: yes
+  vars_files:
+    - user_list.yml
+    - secret.yml
+  tasks:
+    - name: Create User Name, Uid, Groups and Password Hash
+      user:
+        name: "{{ item.username }}"
+        uid: "{{ item.uid }}"
+        password: "{{ user_password | password_hash('sha512') }}" 
+        groups: wheel
+        shell: /bin/bash
+        state: absent
+      loop: "{{ users }}"
+      when: (ansible_fqdn in groups['webservers'] and item.uid|string|first == "1") or (ansible_fqdn in groups['database'] and item.uid|string|first == "2")
+

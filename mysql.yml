@@ -1,0 +1,7 @@
+---
+- name: Create a database
+  hosts: web*
+  vars_files: secret.yml
+  roles:
+    - sample-mysql 
+

@@ -1,0 +1,21 @@
+---
+- name: Welcome Messages
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Write message proxy
+      copy:
+        content: "Welcome to HaProxy Server"
+        dest: /etc/motd
+      when: inventory_hostname in groups['proxy']
+    - name: Write message webservers                
+      copy:                                      
+        content: "Welcome to Apache Server"     
+        dest: /etc/motd                          
+      when: inventory_hostname in groups['webserver'] 
+    - name: Write message database                  
+      copy:                                      
+        content: "Welcome to MySQL Server"     
+        dest: /etc/motd                          
+      when: inventory_hostname in groups['database'] 
+   

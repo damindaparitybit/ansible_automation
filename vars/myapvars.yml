@@ -1,0 +1,4 @@
+my_packages: httpd
+my_services: httpd
+my_ports: "80"
+

@@ -1,0 +1,4 @@
+#!/bin/bash
+useradd automation
+
+##ansible all -m script -a '/home/ansible/tomas/adhoc' 

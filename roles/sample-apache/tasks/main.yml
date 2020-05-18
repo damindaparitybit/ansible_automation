@@ -1,0 +1,31 @@
+---
+# tasks file for sample-apache
+- name: Install {{ my_packages }}
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpd
+    - mod_ssl
+    - php
+- name: Start and Enable {{ my_services }}  
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+ # loop:  httpd  
+- name: Set firewall to allow incoming traffic
+  firewalld:
+    port: "{{ my_ports }}/tcp"
+    immediate: yes
+    permanent: yes
+    state: enabled
+- name: Use Templates
+  template:
+    src: templates/index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: "0644"
+  notify: restart apache
+

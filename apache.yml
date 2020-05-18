@@ -1,0 +1,9 @@
+---
+- name: Install My Apache
+  hosts: webserver
+  become: true
+  gather_facts: yes
+  vars_files:
+    - vars/myapvars.yml
+  roles:
+    - sample-apache

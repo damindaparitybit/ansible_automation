@@ -1,0 +1,4 @@
+{% for mysrv in groups['all'] %}
+{{ hostvars[mysrv].ansible_fqdn }} {{ hostvars[mysrv].ansible_all_ipv4_addresses }} {{ hostvars[mysrv].ansible_hostname }}
+{% endfor %}
+

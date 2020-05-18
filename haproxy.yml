@@ -1,0 +1,17 @@
+---
+- name: Task 11 Geerlingguy Haproxy Configuration
+  hosts: webserver
+  vars:
+    haproxy_frontend_port: 80
+    haproxy_frontend_mode: 'http'
+    haproxy_backend_mode: 'http'
+    haproxy_backend_balance_method: 'roundrobin'
+    # List of backend servers.
+    haproxy_backend_servers:
+       - name: server2.example.com
+         address: 192.168.4.36
+      # - name: app2
+      #   address: 192.168.0.2:80
+  roles:
+    - geerlingguy.haproxy
+

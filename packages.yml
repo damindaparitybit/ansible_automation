@@ -1,0 +1,20 @@
+---
+- name: Install Packages
+  hosts: all
+  tasks:
+    - name: Install tcpdump and mailx
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - tcpdump
+        - mailx
+      when: '"proxy" in group_names'  
+    - name: Install lsof and mail
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - lsof
+        - mailx
+      when: inventory_hostname in groups['database']  

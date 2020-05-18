@@ -1,0 +1,12 @@
+---
+- name: Generate a host list off all hosts
+  hosts: all
+  tasks:
+    - name: Copy server list to webservers. setype obtain
+      template:
+        src: templates/server_list.j2 
+        dest: /etc/server_list.txt
+        owner: ansible
+        setype: net_conf_t
+        mode: 0600
+      when: '"proxy" in group_names'

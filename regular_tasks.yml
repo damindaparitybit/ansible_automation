@@ -1,0 +1,13 @@
+---
+- name: A root crontab record is created every hour
+  hosts: proxy
+  become: true
+  tasks: 
+    - name: Ensure a job that runs date stamped every hour exists.
+      cron:
+        name: "check time log file"
+        minute: "0"
+        hour: "*/1"
+        user: root
+        job: "date >> /var/log/time.log"
+

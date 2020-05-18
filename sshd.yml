@@ -1,0 +1,20 @@
+---
+- name: Configure sshd server
+  hosts: server1.example.com 
+  tasks:
+    - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/ssh/sshd_config  
+        regexp: '^X11Forwarding'
+        line: X11Forwarding no
+    - name: Insert/Update  /etc/ssh/sshd_config  
+      blockinfile:
+        path: /etc/ssh/sshd_config
+        block: |
+          MaxAuthTries 3 
+          Banner /etc/motd
+ 
+
+
+
+

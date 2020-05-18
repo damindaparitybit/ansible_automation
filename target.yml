@@ -1,0 +1,10 @@
+---
+- name: Set target mode
+  hosts: webserver
+  tasks:
+    - name: Create a symbolic link
+      file:
+        src: /usr/lib/systemd/system/multi-user.target 
+        dest: /etc/systemd/system/default.target
+        state: link
+

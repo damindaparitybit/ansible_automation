@@ -1,0 +1,13 @@
+---
+- name: Archiving a file
+  hosts: webserver
+  tasks:
+    - name: Copy content
+      copy:
+        content: "Dev, Test, QA, Prod\n"
+        dest: /mnt/mysql_backups/database_list.txt
+    - name: Archive the list
+      archive:
+        path: /mnt/mysql_backups/database_list.txt
+        dest: /mnt/mysql_backups/archive.gz
+        format: gz

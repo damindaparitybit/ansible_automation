@@ -1,0 +1,18 @@
+---
+- name: Set SELinux Boolean
+  hosts: webserver
+  vars:
+    selinux_state: enforcing 
+    selinux_policy: targeted
+    selinux_booleans:   
+      - { name: 'httpd_can_network_connect_db', state: 'on', persistent: 'yes' }
+
+    #  name: httpd_can_network_connect_db
+    #  state: 'on'
+    #  persistent: yes
+  roles:
+    - rhel-system-roles.selinux
+
+
+
+

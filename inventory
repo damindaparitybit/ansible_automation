@@ -1,0 +1,8 @@
+[proxy]
+server1.example.com
+
+[webserver]
+server2.example.com
+
+[database]
+labipa.example.com
