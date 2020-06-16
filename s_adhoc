@@ -1,0 +1,3 @@
+# install python with raw
+
+asible all -m raw -a 'yum -y install python'

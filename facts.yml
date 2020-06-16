@@ -9,14 +9,16 @@
       file:
         path: "{{ remote_dir }}"
         state: directory 
-    #    rescurse: yes
+     #   rescurse: yes
     - name: Install the new facts
       copy:
         src: "{{ facts_file }}"
         dest: "{{ remote_dir }}"
-
+    - name: retrieve facts after adding custom fact
+      setup: 
+        filter: ansible_local
     - name: Output our newly created static
       debug:
-        msg: "{{ ansible_local_custom.sample.com }}"
+        msg: "{{ ansible_local.custom.sample_exam }}" 
 
 

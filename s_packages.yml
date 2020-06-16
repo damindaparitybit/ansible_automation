@@ -1,0 +1,34 @@
+---
+- name: istall packages
+  hosts: ansible2.example.com
+  tasks:
+    - name: installing httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: ensure httpd startd
+      service:
+        name: "{{ item }}" 
+        enabled: yes
+        state: started
+      loop:
+        - httpd
+        - firewalld
+    - name: allow firewall on http     
+      firewalld:
+        name: http
+        permanent: yes
+        state: enabled
+    - name: create index file 
+      copy:
+        content: "welcome to my host {{ ansible_facts['fqdn'] }}\n"
+        dest: /var/www/html/index.html
+      notify: restart httpd
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+...
+
+

@@ -1,0 +1,23 @@
+---  
+- name: istall packages
+  hosts: ansible2.example.com
+  tasks:
+    - name: ensure services are stopped
+      service:         
+        name: "{{ item }}"
+        disbled: yes   
+        state: stopped
+      loop:
+        - httpd
+        - firewalld
+
+    - name: uninstall httpd 
+      yum:
+        name: httpd
+        state: absent
+    - name: disable firewall on http
+      firewalld:
+        service: http
+        permanent: yes
+        state: disabled
+...        

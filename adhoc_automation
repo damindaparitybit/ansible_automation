@@ -1,0 +1,8 @@
+
+#!/bin/bash
+# cretate automation user on manage hosts
+ansible all -m user -a 'name=automation state=present'
+
+# copy ssh key to all inventory for automation user
+ansible all -m authorized_key -a 'user=ansible state=present key="{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"'
+

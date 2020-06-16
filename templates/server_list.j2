@@ -1,4 +1,4 @@
-{% for server in ansible_play_hosts_all %}
-{{ hostvars[server].ansible_fqdn }}
+{% for server in groups['all'] %}
+{{ hostvars[server]['ansible_facts']['fqdn'] }}
 {% endfor %}
 
