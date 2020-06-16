@@ -1,5 +1,5 @@
 ---  
-- name: istall packages
+- name: uninstall packages
   hosts: ansible2.example.com
   tasks:
     - name: ensure services are stopped
